@@ -1,0 +1,38 @@
+{% include 'nav.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMCDOAI | Contact</title>
+    <link rel="stylesheet" href="{% static 'contact.css' %}"> 
+</head>
+<body>
+    <main>
+        <section class="contact-info">
+            <h2>Contact Information</h2>
+            <ul>
+                <li><strong>Address:</strong> Zone piscess suarez SMCDOAI Meeting Hall</li>
+                <li><strong>Phone:</strong>  09159814082</li>
+                <li><strong>Email:</strong> smcdoaiasoc@gmail.com</li>
+            </ul>
+        </section>
+        <section class="contact-form">
+            <h2>Send Message to Association Admin</h2>
+            <form action="{% url 'contact_submit' %}" method="POST">
+                {% csrf_token %}
+
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="{{user.ct_fname}} {{user.ct_lname}}" required>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" value="{{user.username}}" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <button type="submit" name="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+    {% include 'footer.html' %}
+</body>
+</html>

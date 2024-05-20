@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'HM_food.css' %}">
+    <title>Food List</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Food List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for food in my_foods %}
+                <tr>
+                    <td>{{ food.name }}</td>
+                    <td>{{ food.food_type }}</td>
+                    <td>{{ food.price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/add_foods"><button class="add">+ Add Food</button></a>
+    </div>
+</body>
+</html>

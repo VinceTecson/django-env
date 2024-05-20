@@ -1,0 +1,239 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px;
+}
+
+
+#bajaj_details {
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.bajaj_info {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+}
+
+.bajaj_info img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.bajaj_info h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.bajaj_info p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.bajaj_info ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.bajaj_info ul li {
+    margin-bottom: 5px;
+}
+
+.condition {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.good {
+    color: green;
+    background-color: lightgreen;
+}
+
+.bad {
+    color: red;
+    background-color: salmon;
+}
+
+.btn {
+    display: inline-block;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #555;
+}
+
+
+/* Schedule Section Styles */
+#schedule {
+    width: calc(40% - 10px);
+    margin-left: 10px; 
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left; 
+}
+
+.background_display {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    display: none; 
+}
+
+#sub_button {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    display: none; 
+}
+
+.sub_button_content {
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.calendar_input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: 200px;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+
+  /* schedule list design */
+  .customer_list_container {
+    background-color: #ffffff; 
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.customer_list_container h2 {
+    color: #000000; 
+    font-size: 24px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc; 
+    padding-bottom: 10px; 
+}
+
+.customer_list {
+    list-style-type: none; 
+    padding: 0; 
+}
+
+.customer_item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+    padding: 10px 0;
+}
+
+.customer_name {
+    font-weight: bold;
+    color: #000000;
+}
+
+.schedule {
+    color: #000000;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+/* design for plan inputs */
+
+.plans_display {
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+p {
+    text-align: center;
+}
+
+
+
+
+

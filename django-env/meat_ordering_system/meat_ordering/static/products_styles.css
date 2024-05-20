@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+.top-nav{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20%;
+    padding: 10px 0;
+    border-bottom: 1px solid black;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+.left a{
+    margin-right: 20px;
+}
+.right{
+    width: 50%;
+    display: flex;
+    justify-content: right;
+}
+.right a{
+    margin-left: 20px;
+}
+.table-cont{
+    margin: 0 20%;
+}
+.adding {
+    margin: 0 20%;
+    padding: 5px 0;
+}
+.add-buttons {
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+table {
+    margin-top: 15px;
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}

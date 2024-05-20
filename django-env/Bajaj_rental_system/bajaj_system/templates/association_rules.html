@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bajaj Auto - Rules and Regulations</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'association_rules.css' %}">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="{% static 'logo.jpg' %}" alt="Bajaj Logo" class="logo-img">
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="/homepage" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="/rules_view" class="nav-link">Rules</a></li>
+                    <li class="nav-item"><a href="/pricing" class="nav-link">Price</a></li>
+                    <li class="nav-item"><a href="/bajaj_display" class="nav-link">Bajaj</a></li>
+                    <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="profile_info">
+                <span class="profile_name"><a href="/profile/{{ user.user_id }}" class="profile_link">{{ user.ct_fname }} {{ user.ct_lname }}</a></span>
+                <span class="user_profile_picture">
+                    {% if user.ct_profile %}
+                        <img src="{{ user.ct_profile.url }}" alt="Profile Picture" class="profile_img">
+                    {% endif %}
+                    <a href="{% url 'logout_user' %}" class="logout_link">Logout</a>
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <div class="main_container">
+        <h1>General Guideline</h1>
+        <h2>General Rules</h2>
+        <p>
+            Bajaj Auto promotes safe and responsible riding practices.
+        <ul class="rule_list">
+            <li class="rule_item">Follow traffic laws and regulations at all times.</li>
+            <li class="rule_item">Association have a rules and agreement to be follow for the safety</li>
+            <li class="rule_item">Respect pedestrians, cyclists, and other road users.</li>
+            <li class="rule_item">Do not operate the vehicle under the influence of alcohol or drugs.</li>
+        </ul>
+
+        <h2>Vehicle-Specific Rules</h2>
+        <p>
+            In addition to general rules, please observe the following guidelines specific to Bajaj Auto vehicles:
+        </p>
+        <ul class="rule_list">
+            <li class="rule_item">Under association rules, since it is a rental unit, you must be careful while using the units.</li>
+            <li class="rule_item">Always check the unit's condition to avoid any incidents from happening.</li>
+            <li class="rule_item">Report any mechanical issues or malfunctions to authorized service centers.</li>
+        </ul>
+
+        <h2>Website System Rules</h2>
+        <p>
+            In addition to general rules, please observe the following guidelines specific to Bajaj Auto vehicles:
+        </p>
+        <ul class="rule_list">
+            <li class="rule_item">Customers are not allowed to create multiple accounts under one user.</li>
+            <li class="rule_item">Customer can only Rent one unit and can also create one schedule.</li>
+            <li class="rule_item">If customer have some issues or any problem contact directly to admin</li>
+        </ul>
+    </div>
+    
+    {% include 'footer.html' %}
+
+</body>
+</html>

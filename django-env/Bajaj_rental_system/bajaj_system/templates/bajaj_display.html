@@ -1,0 +1,37 @@
+{% include 'nav.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bajaj_display.css' %}">
+    <title>SMCDOAI | Bajaj </title>
+</head>
+<body>
+    
+    
+    <div class="container">
+        <div class="my_new_container">
+            {% for unit in bajaj %}
+            <div class="bajaj">
+                {% if unit.unit_image %}
+                <img src="{{ unit.unit_image.url }}" alt="{{ unit.unit_color }}">
+                {% else %}
+                <p>No image available</p>
+                {% endif %}
+                <h2>{{ unit.unit_color }}</h2>
+                <p>{{ unit.unit_type }}</p>
+                <p>{{ unit.unit_info }}</p>
+                <a href="/new_unit_list/{{ unit.id }}"><button>Check...</button></a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+
+</body>
+{% include 'footer.html' %}
+
+</html>

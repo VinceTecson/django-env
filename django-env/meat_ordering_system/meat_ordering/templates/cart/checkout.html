@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Order</title>
+</head>
+<body>
+    <h1>Order Summary</h1>
+    <div class="wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td>{{ item.product.prodName }} </td>
+                    <td>{{ item.quantity}} * ₱ {{ item.product.price }}</td>
+                    <td>₱ {{ item.subtotal }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <hr>
+        <p>Total: {{ total_price  }}</p>
+    </div>
+    <a href="">Place Order</a><br>
+    <a href="/cart">Back To Cart</a>
+</body>
+</html>

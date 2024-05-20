@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'student_details.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    
+        <h1> {{ students_list.firstname }} {{students_list.lastname }} </h1>
+
+        <p>Age: {{students_list.age}} </p>
+        <p>course: {{students_list.course}} </p>
+        <p> subject: {{students_list.subject}} </p>
+
+        <p>back to <a href="/students">Students</a> </p>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="{% static 'logo.jpg' %}" type="image/icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Bajaj Rent | SMCDOAI</title>
+  <link rel="stylesheet" href="{% static 'landingpage.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container_header">
+            <div class="logo">
+                <img src="{% static 'logo.jpg' %}" alt="SMCDOAI Logo">
+            </div>
+            <h1>Welcome to SMCDOAI</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#bajaj">Bajaj</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="auth_link"><a href="/login">Login</a> | <a href="/signup">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+
+    {% if request.GET.error_message %}
+    <div class="new_background" id="new_background"></div>
+    <div class="message_error" id="errorMessage">
+      <p>{{ request.GET.error_message }}</p>
+      <button onclick="closePopup()">OK</button>
+    </div>
+    {% endif %}
+
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero_content">
+        <h2>Experience Innovation in Mobility</h2>
+        <p>Discover a wide range of efficient and reliable vehicles for your every need.</p>
+        <a href="#bajaj" class="btn">Explore Products</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+  </section>
+
+  <!-- list of bajaj units -->
+  <section id="bajaj">
+    <div class="container">
+        <div class="bajaj_units">
+            {% for unit in bajaj %}
+                <div class="bajaj">
+                    <span class="type">{{ unit.unit_type }}</span>
+                    <span class="condition">{{ unit.unit_cdt_condition.cdt_unit_condition }}</span>
+                    {% if unit.unit_image %}
+                        <img src="{{ unit.unit_image.url }}" alt="{{ unit.unit_color }}">
+                    {% else %}
+                        <p>No image available</p>
+                    {% endif %}
+                    <h3>{{ unit.unit_color }}</h3>
+
+                    {% if unit.unit_cdt_condition_id == 2 %} <!-- first condition | repair-->
+                    <span class="condition under-repair"><i class="fa-solid fa-wrench"></i> {{unit.unit_cdt_condition.cdt_unit_condition}}</span>
+                
+                    {% elif unit.unit_cdt_condition_id == 3 %} <!-- second condition | standby-->
+                    <span class="condition standby"><i class="fa-solid fa-list-check"></i>  {{unit.unit_cdt_condition.cdt_unit_condition}}</span>
+
+                    {% else %}
+                    <a href="/new_unit_list/{{ unit.id }}" class="btn">Rent Now <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+                    <span class="condition good"><i class="fa-solid fa-check"></i>  {{unit.unit_cdt_condition.cdt_unit_condition}}</span>
+                    {% endif %}
+
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+  </section>
+
+
+  <section id="contact">
+  </section>
+
+ 
+</body>
+
+{% include 'footer.html' %}
+
+<script src="{% static 'landingpage.js' %}"></script>
+</html>

@@ -1,0 +1,32 @@
+{% load static %}
+{% include 'nav.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMCDOAI | Pricing</title>
+  <link rel="stylesheet" href="{% static 'pricing.css' %}">
+</head>
+<body>
+
+  <section id="pricing_plans">
+    <div class="container">
+      <h2>Pricing Plans</h2>
+      
+      {% for plan in rental_plans %}
+      <div class="plan">
+        <h3>{{ plan.plan_name }}</h3>
+        <p>{{ plan.plan_description }}</p>
+        <p class="hours">{{ plan.plan_hours }} Hours</p>
+        <p class="price">₱{{ plan.plan_cost }} / day</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+</body>
+
+{% include 'footer.html' %}
+
+</html>

@@ -1,0 +1,274 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    line-height: 1.6;
+}
+
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.container_header {
+    max-width: 1100px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.logo {
+    float: left; 
+    margin-right: 5%;
+}
+
+nav {
+    float: right;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.logo img {
+    width: 50px;
+}
+
+
+.auth_link {
+    color: #fff;
+}
+
+
+
+.hero {
+    background-image: url(smcdoai.jpg);
+    background-size: cover;
+    color: #f5f5f5;
+    text-align: center;
+    padding: 200px 0;
+}
+
+.hero_scontent {
+    max-width: 600px;
+    margin: auto;
+}
+
+.hero h2 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #ff9900;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ff6600;
+}
+
+
+/* bajaj display in landing page */
+#bajaj {
+    padding: 40px 20px;
+    background-color: #e6e6e6;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#bajaj h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+#bajaj p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.bajaj_units {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.bajaj {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex: 1 1 calc(33% - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+.labels {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+
+.bajaj img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.bajaj:hover img {
+    transform: scale(1.05);
+}
+
+.bajaj h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #ff9900;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: #ff6600;
+}
+
+
+/* error massage display */
+
+
+.new_background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.575);
+  z-index: 9998; 
+  display: none;
+}
+
+.message_error {
+  position: fixed;
+  width: 50%;
+  top: 50%;
+  text-align: center;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8); 
+  padding: 20px;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+  z-index: 9999;
+  display: none;
+}
+
+.message_error
+button {
+  display: inline-block;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* additional design for the color in condition */
+.condition {
+position: absolute;
+top: 10px; 
+right: 10px; 
+padding: 5px 10px; 
+border-radius: 5px;
+font-size: 0.8em;
+}
+
+.under-repair {
+color: #fff;
+background-color: rgb(245, 106, 106);
+}
+
+.standby {
+color: #fff;
+background-color: rgb(247, 247, 67);
+}
+
+.good {
+color: #fff;
+background-color: rgb(7, 173, 1);
+}
+  
+
+/* footer */
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+

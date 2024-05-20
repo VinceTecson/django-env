@@ -1,0 +1,169 @@
+{% load static %}
+<!doctype html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="{% static 'index_styles.css' %}"> 
+</head>
+
+<body>
+  {% load account %}
+
+  {% if user.is_authenticated %}
+    {% if user.is_staff %}
+    <!-- Admin View -->
+    {% include 'navbar.html' %}
+    <!-- Your Admin-specific HTML code goes here -->
+    <div class="logo">
+      <div class="logo-info">
+        <img src="{% static 'logo.png' %}" alt="My image"/>
+      </div>
+      <div class="meatshop">
+        <h1>Bigornia's</h1>
+        <h3>Meat Shop</h3>
+      </div>
+    </div>
+    
+    <div class="cover-photo">
+      <p>Fresh Meat</p>
+      <p>Available</p>
+      <button>Order Now</button>
+    </div>
+   
+
+    {% else %}
+    <!-- User View -->
+    {% include 'navbar.html' %}
+    <!-- Your User-specific HTML code goes here -->
+    <div class="logo">
+      <div class="logo-info">
+        <img src="{% static 'logo.png' %}" alt="My image"/>
+      </div>
+      <div class="meatshop">
+        <h1>Bigornia's</h1>
+        <h3>Meat Shop</h3>
+      </div>
+    </div>
+    
+    <div class="cover-photo">
+      <p>Fresh Meat</p>
+      <p>Available</p>
+      <button>Order Now</button>
+    </div>
+    
+    <div class="category">
+      <div class="categ">
+        <a href="{% url 'prodCateg' 0 %}">All Products</a>
+        <a href="{% url 'prodCateg' 1 %}">Beef</a>
+        <a href="{% url 'prodCateg' 2 %}">Pork</a>
+      </div>
+      <div class="cart">
+        <a href="/cart">Cart</a>
+      </div>
+    </div>
+    
+    <div class="product-gallery">
+        {% for x in products %}
+          <div class="prod-cont">
+            <div class="prod">
+              <img src="{{ x.image.url }}" width="180px" height="200px" style="border: 1px solid black;"/>
+              <h5>{{ x.prodName }}</h5>
+              <p>Price: ₱ {{ x.price }}</p>
+              <!--button>Add to cart</button-->
+              <a class="buy-now-button" href="{% url 'add_to_cart' x.id %}">Add to Cart</a>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+    <p style="text-align: center;">FOOTER</p>
+    <div class="footer">
+    </div>
+    <div class="copyright">
+      <p>Copyright @2024, design by: AngkolTonyo</p>
+    </div>
+    {% endif %}
+
+    {% else %}
+    {% include 'navbar.html' %}
+    <div class="logo">
+      <div class="logo-info">
+        <img src="{% static 'logo.png' %}" alt="My image"/>
+      </div>
+      <div class="meatshop">
+        <h1>Bigornia's</h1>
+        <h3>Meat Shop</h3>
+      </div>
+    </div>
+    
+    <div class="cover-photo">
+      <p>Fresh Meat</p>
+      <p>Available</p>
+      <button>Order Now</button>
+    </div>
+    
+    <!--div class="category">
+      <div class="categ">
+        <a href="accounts/login/">All Products</a>
+        <a href="accounts/login/">Beef</a>
+        <a href="accounts/login/">Pork</a>
+      </div>
+      <div class="cart">
+        <a href="#">Cart</a>
+      </div>
+    </div-->
+    
+    <div class="product-gallery">
+          <div class="prod-cont">
+            <div class="prod">
+              <img src="{% static 'belly.jpg' %}" width="180px" height="200px" style="border: 1px solid black;"/>
+              <h5>Pork Belly</h5>
+              <p>Price: ₱ 500</p>
+              <button><a href="accounts/login/" style="text-decoration: none; color: black;">Add to cart</a></button>
+            </div>
+          </div>
+          <div class="prod-cont">
+            <div class="prod">
+              <img src="{% static 'porkchop.jpg' %}" width="180px" height="200px" style="border: 1px solid black;"/>
+              <h5>Pork Belly</h5>
+              <p>Price: ₱ 500</p>
+              <button><a href="accounts/login/" style="text-decoration: none; color: black;">Add to cart</a></button>
+            </div>
+          </div>
+          <div class="prod-cont">
+            <div class="prod">
+              <img src="{% static 'groundpork.jpg' %}" width="180px" height="200px" style="border: 1px solid black;"/>
+              <h5>Pork Belly</h5>
+              <p>Price: ₱ 500</p>
+              <button><a href="accounts/login/" style="text-decoration: none; color: black;">Add to cart</a></button>
+            </div>
+          </div>
+          <div class="prod-cont">
+            <div class="prod">
+              <img src="{% static 'beefribs.jpg' %}" width="180px" height="200px" style="border: 1px solid black;"/>
+              <h5>Pork Belly</h5>
+              <p>Price: ₱ 500</p>
+              <button><a href="accounts/login/" style="text-decoration: none; color: black;">Add to cart</a></button>
+            </div>
+          </div>
+          <div class="prod-cont">
+            <div class="prod">
+              <img src="{% static 'groundbeef.jpg' %}" width="180px" height="200px" style="border: 1px solid black;"/>
+              <h5>Pork Belly</h5>
+              <p>Price: ₱ 500</p>
+              <button><a href="accounts/login/" style="text-decoration: none; color: black;">Add to cart</a></button>
+            </div>
+          </div>
+          <div class="seemore">
+            <a href="accounts/login/" class="see">See more</a>
+          </div>
+    </div>
+    <p style="text-align: center;">FOOTER</p>
+    <div class="footer">
+    </div>
+    <div class="copyright">
+      <p>Copyright @2024, design by: AngkolTonyo</p>
+    </div>
+    {% endif %}
+</body>
+
+</html>

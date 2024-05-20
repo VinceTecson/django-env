@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>User Profile</h1>
+    <p>Username: {{ user.user_name }}</p>
+    <p>Email: {{ user.user_email }}</p>
+    <h2>Purchased Items</h2>
+    <ul>
+        {% for purchase in purchases %}
+        <li>
+            {{ purchase.item.name }} - Quantity: {{ purchase.quantity }} - Purchased on: {{ purchase.purchased_at }}
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'shop' %}">Go to Shop</a>
+    <a href="{% url 'logout_user' %}">Logout</a>
+</body>
+</html>

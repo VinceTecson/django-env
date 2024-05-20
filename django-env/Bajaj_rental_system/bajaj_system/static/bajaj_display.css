@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    overflow: hidden; 
+    padding: 0 20px;
+}
+
+.my_new_container {
+    display: flex;
+}
+
+
+
+.bajaj {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+    width: 300px;
+    flex: 1 1 300px; 
+}
+
+.bajaj img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.bajaj h2 {
+    margin-top: 0;
+}
+
+.cbajajard p {
+    margin-bottom: 0;
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.my_new_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.bajaj {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1 1 300px; 
+    transition: transform 0.3s ease;
+}
+
+.bajaj:hover {
+    transform: translateY(-5px);
+}
+
+.bajaj img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.bajaj h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.bajaj p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #666;
+}
+
+/* Button styles */
+.bajaj button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.bajaj button:hover {
+    background-color: #0056b3;
+}

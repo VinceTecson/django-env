@@ -1,0 +1,57 @@
+{% load socialaccount %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'login_styles.css' %}"> 
+    <title>LOGIN</title>
+</head>
+<body>
+    <div class="form-wrapper">
+        <div class="form">
+            <div class="logo">
+            <a href="/"><img src="{% static 'logo.png' %}" alt="My image"></a>
+            </div>
+            <h1>Login</h1>
+            <div class="">
+                <p>If you have not created an account yet, then please
+                    <a class="" href="{{ signup_url }}">sign up</a> first.
+                </p>
+            </div>
+
+            <form action="{% url 'account_login' %}" method="POST" class="my-auto">
+                {% csrf_token %}
+                <div class="username">
+                    {{form.login}}
+                </div>
+
+                <div class="password">
+                    {{form.password}}
+                </div>
+
+                <div class="remember">
+                    {{form.remember}}
+                    <label for="remember" >Remember Me</label>
+                </div>
+                
+                <div class="">
+                    <button class="login-button" type="submit">
+                        Sign In
+                    </button>
+                </div>
+            </form>
+            
+            <!--div class="">
+                <a href="{% provider_login_url 'google' %}">
+                    <button class="google">
+                        Sign in with google
+                    </button>
+                </a>
+            </div-->
+        </div>
+    </div>
+    {%endblock%}
+</body>
+</html>
+

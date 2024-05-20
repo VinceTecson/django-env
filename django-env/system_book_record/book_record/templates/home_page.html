@@ -1,0 +1,239 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Admin Dashboard | Korsat X Parmaga</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+{% block content %}
+
+<body>
+    <!-- =============== Navigation ================ -->
+    
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="logo-apple"></ion-icon>
+                        </span>
+                        <span class="title">Brand Name</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="people-outline"></ion-icon>
+                        </span>
+                        <span class="title">Customers</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="chatbubble-outline"></ion-icon>
+                        </span>
+                        <span class="title">Messages</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="help-outline"></ion-icon>
+                        </span>
+                        <span class="title">Help</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="settings-outline"></ion-icon>
+                        </span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                        </span>
+                        <span class="title">Password</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="Search here">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+
+                <div class="user">
+                    <img src="assets/imgs/customer01.jpg" alt="">
+                </div>
+            </div>
+
+            <!-- ======================= Cards ================== -->
+            <div class="cardBox">
+                <!-- daily views -->
+                <div class="card">
+                    <div>
+                        <div class="numbers">1,504</div>
+                        <div class="cardName">Members</div>
+                    </div>
+
+                    <div class="iconBx">
+                        <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                </div>
+
+                <!-- Total Credits -->
+                <div class="card">
+                    <div>
+                        <div class="numbers">1,400</div>
+                        <div class="cardName">Total Credits</div>
+                    </div>
+
+                    <div class="iconBx">
+                        <ion-icon name="cart-outline"></ion-icon>
+                    </div>
+                </div>
+
+                <!-- comments -->
+                <div class="card">
+                    <div>
+                        <div class="numbers">284</div>
+                        <div class="cardName">Collection</div>
+                    </div>
+
+                    <div class="iconBx">
+                        <ion-icon name="chatbubbles-outline"></ion-icon>
+                    </div>
+                </div>
+
+                <!-- earnings -->
+                <div class="card">
+                    <div>
+                        <div class="numbers">$7,842</div>
+                        <div class="cardName">Total Earning</div>
+                    </div>
+
+                    <div class="iconBx">
+                        <ion-icon name="cash-outline"></ion-icon>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================ Order Details List ================= -->
+            <div class="details">
+                <div class="recentOrders">
+                    <h2>Credit Record</h2>
+                    <div class="cardHeader">
+                        <a href="#" class="btn" id="addCustomerBtn">Add Customer</a>
+                        <a href="#" class="btn">View All</a>
+                    </div>
+                
+                    <!-- pop-up input field -->
+                    <div class="overlay" id="overlay">
+                        <div class="modal">
+                            <h2>Add Customer</h2>
+                            <form action="{% url 'add_customer' %}" method="post" class="add">                            
+                                {% csrf_token %}
+                                <label for="firstname">First Name:</label><br>
+                                <input type="text" id="firstname" name="firstname"><br>
+                                <label for="lastname">Last Name:</label><br>
+                                <input type="text" id="lastname" name="lastname"><br><br>
+                                <label for="dateofcredits">Date Credits:</label><br>
+                                <input type="date" id="dateofcredits" name="dateofcredits"><br><br>
+                                <label for="lastcredits">Last Credits:</label><br>
+                                <input type="text" id="lastcredits" name="lastcredits"><br>
+                                <label for="dateofpayment">Date Payment:</label><br>
+                                <input type="date" id="dateofpayment" name="dateofpayment"><br><br>
+                                <label for="lastpayment">Last Payment:</label><br>
+                                <input type="text" id="lastpayment" name="lastpayment"><br><br>
+                                <label for="totalbalance">Total Balance:</label><br>
+                                <input type="text" id="totalbalance" name="totalbalance"><br><br>
+                                <input type="submit" value="Submit">
+                                <button type="button" id="closeModalBtn">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Name</th>
+                                <th>Total Balance</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customerTableBody">
+                            <!-- Customer data will be dynamically generated here -->
+                            {% for x in home_page %}
+                            <tr class="customer-row">
+                                <td>{{x.id}}</td>
+                                <td>{{x.firstname}} {{x.lastname}}</td>
+                                <td>{{x.totalbalance}}</td>
+                                <td><span class="status delivered">good</span></td>
+                                <td>
+                                    <input type="hidden" class="customerId" value="{{x.id}}">
+                                    <a href="delete/{{x.id}}"><button>Delete</button></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========== Scripts =========  -->
+    <script src="{% static 'main.js'%}"></script>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+{% endblock %}
+</html>

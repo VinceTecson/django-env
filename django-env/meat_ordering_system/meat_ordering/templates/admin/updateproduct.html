@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'updateproduct_styles.css' %}">
+    <title>Update Product</title>
+</head>
+<body>
+
+
+    <div class="form-wrapper">
+        
+    <form method="post" enctype="multipart/form-data" class="form">
+        <h1>Update Product</h1>
+        {% csrf_token %}
+        <label for="id_prodName">Product Name:</label>
+        <input type="text" id="id_prodName" name="prodName" value="{{ product.prodName }}">
+        <label for="id_price">Price:</label>
+        <input type="text" id="id_price" name="price" value="{{ product.price }}">
+
+        <label for="id_category">Category:</label>
+        <select id="category" name="category" class="category">
+            {% for category in categories %}
+                {% if category.id == product.category.id %}
+                    <option value="{{ category.id }}" selected>{{ category.category }}</option>
+                {% else %}
+                    <option value="{{ category.id }}">{{ category.category }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        
+
+        <label for="id_image">Current Image:</label>
+        <div class="current-image">
+            <img src="{{ product.image.url }}" alt="{{ product.prodName }}" style="max-width: 300px; height: 250px; text-align: center; ">
+        </div>
+        <label for="id_new_image">New Image:</label>
+        <input type="file" id="id_new_image" name="image">
+        <button type="submit">Update</button>
+        <div class="cancel">
+            <a href="/adminproduct">Cancel</a>
+        </div>
+    </form>
+    </div>
+
+    
+</body>
+</html>

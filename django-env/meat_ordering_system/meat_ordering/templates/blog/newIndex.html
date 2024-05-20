@@ -1,0 +1,72 @@
+{% load static %}
+<!doctype html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="{% static 'index_styles.css' %}"> 
+</head>
+
+<body>
+  {% include 'navbar.html' %}
+  <div class="logo">
+    <div class="logo-info">
+      <img src="{% static 'logo.png' %}" alt="My image"/>
+    </div>
+    <div class="meatshop">
+      <h1>Bigornia's</h1>
+      <h3>Meat Shop</h3>
+    </div>
+  </div>
+  
+  <div class="cover-photo">
+    <p>Fresh Meat</p>
+    <p>Available</p>
+    <button>Order Now</button>
+  </div>
+  
+  <div class="category">
+    <div class="categ">
+      <a href="{% url 'prodCateg' 'All' %}">All Products</a>
+      <a href="{% url 'prodCateg' 'Beef' %}">Beef</a>
+      <a href="{% url 'prodCateg' 'Pork' %}">Pork</a>
+      <a href="{% url 'prodCateg' 'Chicken' %}">Chicken</a>
+    </div>
+    <div class="cart">
+      <a href="#">Cart</a>
+    </div>
+  </div>
+  
+  <div class="product-gallery">
+    {% if user.is_authenticated %}
+      {% if user.is_staff %}
+        <!-- Admin View -->
+        <!-- Your Admin-specific HTML code goes here -->
+      {% else %}
+        <!-- User View -->
+        <!-- Your User-specific HTML code goes here -->
+      {% endif %}
+    {% else %}
+      <!-- Not Logged In View -->
+      <!-- Your Not Logged In-specific HTML code goes here -->
+      {% for x in products %}
+        <div class="prod-cont">
+          <div class="prod">
+            <img src="{{ x.image.url }}" width="180px" height="200px" style="border: 1px solid black;"/>
+            <h5>{{ x.prodName }}</h5>
+            <p>Price: {{ x.price }}</p>
+            <button>Add to cart</button>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <p style="text-align: center;">FOOTER</p>
+  <div class="footer">
+  </div>
+  <div class="copyright">
+    <p>Copyright @2024, design by: AngkolTonyo</p>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,247 @@
+<!-- download  -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="{% static 'logo.jpg' %}" type="image/icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMCDOAI | Admin</title>
+<link rel="stylesheet" href="{% static 'admin.css' %}">
+</head>
+<body>
+
+<header>
+    <h1>SMCDOAI System</h1>
+    <a href="{% url 'logout_user' %}" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+</header>
+
+    <div class="sections_container">
+
+        <!-- section display all the bajaj -->
+        <section id="bajaj_autos">
+            <h2>Bajaj Autos</h2>
+            <div class="unit_container">
+                <ul class="unit_list">
+                    {% for unit in units %}
+                    <li class="unit_item">
+                        <img src="{{ unit.unit_image.url }}" alt="{{ unit.unit_color }}">
+                        <div class="unit_info">
+                            <span class="unit_color">{{ unit.unit_color }} | {{ unit.unit_cdt_condition.cdt_unit_condition }}</span>
+                        </div>
+                        <div class="unit_buttons">
+                            <button class="update_button" onclick="update('{{ unit.id }}')">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button class="info_button">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <button type="button" class="add_button" onclick="add_new_units()">Add Unit</button>
+        </section>
+        
+        
+        
+        
+
+<!-- --------------------------------------------------------------------------------------------------------------------------------------- -->
+        
+        <!-- add unit form-->
+        <!-- this division is an add form for units -->
+        <div id="add_unit_form" class="add_unit_container">
+            <span class="close" onclick="close_box()">&times;</span>
+            <div class="add_other_units">
+                <form method="POST" action="{% url 'add_units' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <label for="image">Unit Image:</label>
+                    <input type="file" id="image" name="unit_image">
+                    <br>
+                    
+                    <label for="unit_color">Unit Color:</label>
+                    <input type="text" id="unit_color" name="unit_color">
+                    <br>
+                    <label for="unit_type">Unit Type:</label>
+                    <input type="text" id="unit_type" name="unit_type">
+                    <br>
+                    <label for="unit_info">Unit Info:</label>
+                    <input type="text" id="unit_info" name="unit_info">
+                    <br>
+                    <label for="unit_condition">Unit Condition:</label>
+                    <select name="unit_condition" id="unit_condition">
+                        {% for condition in unit_conditions %}
+                            <option value="{{ condition.id }}">{{ condition.cdt_unit_condition }}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                    <button type="submit" name="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+
+<!-- ----------------------------------------------------------------------------------------------------------- -->
+        
+        <!-- update unit form -->
+        <div id="update_unit_form" class="update_unit_container">
+            <span class="close" onclick="close_box_update()">&times;</span>
+            <div class="update_unit_container_close">
+
+              <form id="update_form" method="POST" action="{% url 'update_unit' %}">
+                {% csrf_token %}
+                <input type="hidden" id="unit_id" name="unit_id">
+
+                <label for="unit_color">Unit Color:</label>
+                <input type="text" id="unit_color" name="unit_color" value="{{unit.unit_color}}">
+                <br>
+
+                <label for="unit_type">Unit Type:</label>
+                <input type="text" id="unit_type" name="unit_type" value="{{unit.unit_type}}">
+                <br>
+
+                <label for="unit_info">Unit Info:</label>
+                <input type="text" id="unit_info" name="unit_info" value="{{unit.unit_info}}">
+                <br>
+
+                <button type="submit" name="submit">Submit</button>
+              </form>
+            </div>
+        </div>
+
+<!-- ------------------------------------------------------------------------------------------------------------- -->
+
+        <!-- section display all the customers -->
+        <section id="customers">
+            <h2>Customers</h2>
+            <ul>
+                {% for list_customer in customers %}
+                    <li class="unit_item">
+                        <span> <i class="fa-solid fa-user"></i> {{ list_customer.ct_fname }} {{list_customer.ct_lname}} | <strong>USR:</strong> {{list_customer.username}}</span>
+                        <div class="unit_buttons">
+                            <button class="update_button"><i class="fa-solid fa-square-pen"></i></button>
+                            <button class="info_button"><i class="fa-solid fa-circle-info"></i></button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+
+<!-- ------------------------------------------------------------------------------------------------------------ -->
+       
+<!-- section display all the schedules.  -->
+<section id="schedules">
+    <h2>Schedules</h2>
+    <ul>
+        {% for schedule in schedules %}
+        <li class="unit_item">
+            <form id="schedule_form_{{ schedule.id }}" action="{% url 'my_schedule_selected' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="schedule_id" value="{{ schedule.id }}">
+                <span>{{ schedule.rs_customer.ct_fname }} {{ schedule.rs_customer.ct_fname }}: {{ schedule.rs_date }} | {{ schedule.rs_plan.plan_name }}</span>
+                <div class="tracking_card_button">
+                    <!-- Add ID to the button for easier identification -->
+                    <button id="tracking_button_{{ schedule.id }}" class="trackingcard" onclick="tracking_schedule('{{ schedule.id }}')">Pending</button>
+                </div>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+        
+        <!-- section display all the rental records -->
+        <section id="rental_record">
+            <h2>Rental Record</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Units</th>
+                        <th>Unit Type</th>
+                        <th>Time Record</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in rental_records %}
+                    <tr>
+                        <td><strong>{{ record.rr_customer }}</strong></td>
+                        <td>{{ record.rr_units.unit_color }}</td>
+                        <td>{{ record.rr_units.unit_type }}</td>
+                        <td>{{ record.present_time }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+    <!-- ------------------------------------------------------------------------------------------------ -->
+
+        <!-- pricing section -->
+        <section id="Pricing">
+            <h2>Pricing Plan</h2>
+            <ul class="plans_list">
+                {% for plan in rental_plans %}
+                <li class="plan_item">
+                    <div class="plan_content">
+                        <h2>{{ plan.plan_name }}</h2>
+                        <p>Description: {{ plan.plan_description }}</p>
+                        <p>Hours: {{ plan.plan_hours }}</p>
+                        <p>Cost: {{ plan.plan_cost }}</p>
+                        <p>Units: {{ plan.plan_units }}</p>
+                    </div>
+                    <button class="update_button" onclick="update_pricing('{{plan.id}}')">Update</button>
+
+                    <form id="update_form_{{ plan.id }}" class="update_form" method="post" action="{% url 'update_plan' plan.id %}">
+                        {% csrf_token %}
+
+                        <label for="plan_name">Plan Name:</label>
+                        <input type="text" id="plan_name" name="plan_name" value="{{ plan.plan_name }}" required><br>
+                        
+                        <label for="plan_description">Description:</label>
+                        <input type="text" id="plan_description" name="plan_description" value="{{ plan.plan_description }}" required><br>
+                        
+                        <label for="plan_hours">Hours:</label>
+                        <input type="number" id="plan_hours" name="plan_hours" value="{{ plan.plan_hours }}" required><br>
+                        
+                        <label for="plan_cost">Cost:</label>
+                        <input type="number" id="plan_cost" name="plan_cost" value="{{ plan.plan_cost }}" required><br>
+                        
+                        <button type="submit">Update</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+            
+            <button id="showFormButton">Add Price</button>
+        
+            <!-- add price-->
+            <div id="pricingPopup" class="popup" style="display: none;">
+                <div class="popup-content">
+                    <span class="close">&times;</span>
+                    <form method="post" action="{% url 'add_price' %}">
+                        {% csrf_token %}
+                        <h2>Add Price</h2>
+                        <input type="text" name="plan_name" placeholder="Plan Name">
+                        <input type="text" name="plan_description" placeholder="Plan Description">
+                        <input type="number" name="plan_hours" placeholder="Plan Hours">
+                        <input type="number" name="plan_cost" placeholder="Plan Cost">
+                        <input type="number" name="plan_units" placeholder="Plan Units">
+                        <button type="submit">Add Price</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+         
+    </div>
+
+
+</body>
+<script src="{% static 'admin.js' %}"></script>
+</html>

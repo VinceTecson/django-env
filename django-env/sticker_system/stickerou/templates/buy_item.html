@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy {{ item.name }}</title>
+</head>
+<body>
+    <h1>Buy {{ item.name }}</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" min="1" value="1">
+        <input type="submit" value="Buy">
+    </form>
+    <a href="{% url 'shop' %}">Back to Shop</a>
+</body>
+</html>

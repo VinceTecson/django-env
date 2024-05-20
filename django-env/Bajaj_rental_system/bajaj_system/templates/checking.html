@@ -1,0 +1,106 @@
+{% load static %}
+{% include 'nav.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMCDOAI | Unit Details</title>
+  <link rel="stylesheet" href="{% static 'checking.css' %}">
+</head>
+<body>
+
+
+  <section id="bajaj_details">
+    <div class="container">
+        <div class="bajaj_info">
+          {% if unit.unit_image %}
+          <img src="{{ unit.unit_image.url }}" alt="{{ unit.unit_color }}">
+          {% else %}  
+              <p>No image available</p>
+          {% endif %}
+
+            <h2>{{ unit.unit_color }}</h2>
+            <p>{{ unit.unit_info }}</p>
+            <ul class="bajaj_details-list">
+                <li><strong>Year:</strong> 2024</li>
+                <li><strong>Color:</strong> {{ unit.unit_color }}</li>
+                <li><strong>Type:</strong> {{ unit.unit_type }}</li>
+
+                {% if unit.unit_cdt_condition_id == 2 %} <!-- first condition | repair-->
+                <span class="condition under-repair"><i class="fa-solid fa-wrench"></i> {{unit.unit_cdt_condition.cdt_unit_condition}}</span>
+    
+                {% elif unit.unit_cdt_condition_id == 3 %} <!-- second condition | standby-->
+                <span class="condition standby"><i class="fa-solid fa-list-check"></i>  {{unit.unit_cdt_condition.cdt_unit_condition}}</span>
+    
+                {% else %}
+                <li><span class="condition good"><i class="fa-solid fa-check"></i>  {{unit.unit_cdt_condition.cdt_unit_condition}}</span></li>
+                <a href="/new_unit_list/{{ unit.id }}" class="btn" onclick="openPopup(event)">Rent Now <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+                {% endif %}            
+              </ul>
+        </div>
+
+        <div class="customer_list_container">
+            <h2>Schedule's</h2>
+            <ul class="customer_list">
+
+              <!-- for loop function for display the data inside schedule record -->
+                {% for schedule in unit.rentalschedule_set.all %}
+                <li class="customer_item">
+                    <p class="customer_name">{{ schedule.rs_customer }}</p>
+                    <p class="schedule">{{ schedule.rs_date }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+  <!-- set schedule -->
+<div class="background_display" id="background" onclick="openClose()"></div>
+<div id="sub_button" class="sub_button">
+    <div class="sub_button_content">
+        <span class="close" onclick="closeOpen()">&times;</span>
+        <h2>Schedule</h2>
+        
+        <form method="post" action="{% url 'scheduling' %}">
+          {% csrf_token %}
+          <label for="date">Select Date:</label>
+          <br>
+          <input type="date" id="date" name="rs_date" class="calendar_input">
+          <br>
+
+          <label for="time">Time Rent:</label>
+          <br>
+          <input type="time" id="time" name="rs_timeStart" class="calendar_input">
+          <br>
+
+          <label for="plans">Select your plans:</label>
+          <br>
+
+          <!-- fetch data from plans -->
+          <div class="plans_display">
+            {% if my_plans %}
+                <select name="rs_plan" id="plans">
+                    {% for plan in my_plans %}
+                        <option value="{{ plan.id }}">{{ plan.plan_name }} - {{ plan.plan_hours }} Hours | ₱{{ plan.plan_cost }} Day</option>
+                    {% endfor %}
+                </select>
+            {% else %}
+                <p>No rental plans available</p>
+            {% endif %}
+        </div>
+
+          <input type="hidden" name="unit_id" value="{{ unit.id }}">
+          <input type="submit" value="Submit" class="btn">
+      </form>
+    </div>
+</div>
+
+  <script src=" {% static 'checking.js' %} "></script>
+</body>
+
+{% include 'footer.html' %}
+
+</html>

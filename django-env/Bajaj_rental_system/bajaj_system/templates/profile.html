@@ -1,0 +1,215 @@
+<!-- profile.html -->
+{% include 'nav.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMCDOAI | Profile</title>
+    <link rel="stylesheet" href="{% static 'profile.css' %}">
+</head>
+<body>
+
+<section id="profile">
+    <div class="container">
+        <div class="profile_info">
+            <div class="profile-details">
+                <div class="profile-header">
+                    <h1>{{ user.ct_fname }} {{ user.ct_lname }}</h1>
+                    <p class="username">Username: {{ user.username }}</p>
+                </div>
+                <div class="info-container">
+                    <div class="info-card">
+                        <h2>Personal Information</h2>
+                        <table>
+                            <tr>
+                                <td><strong>First Name:</strong></td>
+                                <td>{{ user.ct_fname }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Middle Name:</strong></td>
+                                <td>{{ user.ct_mname }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Last Name:</strong></td>
+                                <td>{{ user.ct_lname }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Birthday:</strong></td>
+                                <td>{{ user.ct_birthday }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="info-card">
+                        <h2>Contact Information</h2>
+                        <table>
+                            <tr>
+                                <td><strong>Address:</strong></td>
+                                <td>{{ user.ct_address }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Contact no.:</strong></td>
+                                <td>{{ user.ct_contact }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <button id="showHistoryBtn" class="btn">Show Rental History</button>
+                <button id="showHistoryBtn" class="btn">Edit Profile</button>
+
+            </div>
+            <div class="tracking_card_cover">
+                <div class="tracking_card_inner">
+                    <div class="header">
+                        <p class="state">Tracking Card</p>
+                    </div>
+                    <div class="details">
+                        <div class="photo">
+                            {% if user.ct_profile %}
+                                <img src="{{ user.ct_profile.url }}" alt="Profile Picture">
+                            {% endif %}
+                        </div>
+                        <div class="info">
+                            {% for schedule in schedules %}
+                                <div class="schedule-card">
+                                    <p class="schedule-date"><strong>{{ schedule.rs_date }}</strong></p>
+                                    <p class="schedule-time">{{ schedule.rs_timeStart }}</p>
+                                    <p class="schedule-unit">{{ schedule.rs_units.unit_color }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>    
+
+                <!-- rental history -->
+                <div id="rental_History" class="History">
+                    <div class="History_content">
+                        <span class="close">&times;</span>
+
+                        <h2>Rental Schedules</h2>
+                        <ul class="rental_history">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Unit Display</th>
+                                        <th>Date</th>
+                                        <th>Time Start</th>
+                                        <th>Type</th>
+                                        <th>Payment</th>
+                                        <th>Plan</th>
+                                        <th>Unit</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for schedule in schedules %}
+                                        <tr>
+                                            <td><img src="{{ schedule.rs_units.unit_image.url }}" alt=""></td>
+                                            <td>{{ schedule.rs_date }}</td>
+                                            <td>{{ schedule.rs_timeStart }}</td>
+                                            <td>{{ schedule.rs_units.unit_type }}</td>
+                                            <td>₱ {{ schedule.rs_plan.plan_cost }}</td>
+                                            <td>{{ schedule.rs_plan.plan_name }}</td>
+                                            <td>{{ schedule.rs_units.unit_color }}</td>
+                                            <td>
+                                                <p style="display: inline;" onclick="openClose('{{ schedule.id }}')">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </p> 
+                                                | 
+                                                <form method="post" action="{% url 'delete_schedule' %}" style="display: inline;">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="schedule_id" value="{{ schedule.id }}">
+                                                    <button type="submit" style="border:none; background:none; cursor:pointer; padding:0;">
+                                                        <i class="fa-solid fa-trash-can"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </ul>
+
+                        <!-- update schedule -->
+                            <div class="background_display" id="background" onclick="openClose()"></div>
+                            <div id="sub_button" class="sub_button">
+                                <div class="sub_button_content">
+                                    <span class="remove" onclick="closeOpen()">&times;</span>
+                                    <h2>Schedule</h2>
+                                    
+                                    <form method="post" action="{% url 'update_schedule' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="schedule_id">
+                                        
+                                        <label for="date">Select Date:</label>
+                                        <br>
+                                        <input type="date" id="date" name="rs_date" class="calendar_input" value="{{ schedule.rs_date }}">
+                                        <br>
+                                    
+                                        <label for="time">Time Rent:</label>
+                                        <br>
+                                        <input type="time" id="time" name="rs_timeStart" value="{{ schedule.rs_timeStart }}" class="calendar_input">
+                                        <br>
+                                    
+                                        <label for="plans">Select your plans:</label>
+                                        <br>
+                                    
+                                        <!-- fetch data from plans -->
+                                        <div class="plans_display">
+                                            {% if my_plans %}
+                                                <select name="rs_plan" id="plans">
+                                                    {% for plan in my_plans %}
+                                                        <option value="{{ plan.id }}">{{ plan.plan_name }} - {{ plan.plan_hours }} Hours | ₱{{ plan.plan_cost }} Day</option>
+                                                    {% endfor %}
+                                                </select>
+                                            {% else %}
+                                                <p>No rental plans available</p>
+                                            {% endif %}
+                                        </div>
+                                    
+                                        <input type="submit" value="Submit" name="submit" class="btn">
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        <!-- rental records -->
+                        <h2>Rental History</h2>
+                        <ul class="rental_history">
+                            
+                            <table>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Units</th>
+                                    <th>Unit Type</th>
+                                    <th>Present Time</th>
+                                    <th>Cost</th>
+                                    <th>Status</th>
+                                </tr>
+
+                                {% for record in records_Rental %}
+                            <tr>
+                                <td>{{ record.rr_customer }}</td>
+                                <td>{{ record.rr_units.unit_color }}</td>
+                                <td>{{ record.rr_units.unit_type }}</td>
+                                <td>{{ record.present_time }}</td>
+                                <td>₱ {{record.rr_plan.plan_cost}} </td>
+                            </tr>
+                                {% endfor %}
+                            </table>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="{% static 'profile.js' %}"></script>
+
+{% include 'footer.html' %}
+
+</body>
+</html>

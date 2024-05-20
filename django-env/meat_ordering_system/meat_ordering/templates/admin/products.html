@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'products_styles.css' %}">
+    <title>Admin Product</title>
+</head>
+<body>
+    <div class="top-nav">
+        <div class="left">
+          <a href="#">Dashboard</a>
+          <a href="/adminproduct/">Products</a>
+          <a href="#">Orders</a>
+          <a href="#">Payment</a>
+        </div>
+        <div class="right">
+          <a href="{% url 'account_logout' %}" class="">Sign Out</a>
+        </div>
+    </div>
+    
+    <div class="adding">
+        <a href="addproduct/" class="add-buttons">add product</a>
+    </div>
+    
+    <div class="table-cont">
+        <table>
+            <thead>
+                <tr >
+                    <th>Category</th>
+                    <th>Product Image</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for x in products %}
+                <tr>
+                    <td>{{ x.category.category }}</td>
+                    <td >
+                        <img src="{{ x.image.url }}" alt="{{ x.prodName }}" style="width: 100px; height: 100px;">
+                    </td>
+                    <td>{{ x.prodName }}</td>
+                    <td>₱ {{ x.price }}</td>
+                    <td>
+                        <a href="{% url 'update_product' x.id %}">Update</a>
+                        <a href="{% url 'delete_product' x.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table> 
+    </div>
+    
+</body>
+</html>

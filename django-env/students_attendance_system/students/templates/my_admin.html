@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="{% static 'my_admin.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">Welcome to Registration</h1>
+
+        <form action="{% url 'add_information' %}" method="post" class="registration-form">
+            {% csrf_token %}
+
+            <div class="section">
+                <h2>Student Information</h2>
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" placeholder="First Name" name="first_name" required>
+
+                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" placeholder="Last Name" name="last_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date of Birth</label>
+                    <input type="date" id="date" name="birthday" required>
+
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" placeholder="Address" name="address" required>
+
+                    <label for="contact">Contact Number</label>
+                    <input type="tel" id="contact" placeholder="Contact Number" name="contact_number" required>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Student Level</h2>
+                <div class="form-group">
+                    <label for="course">Course</label>
+                    <select name="course" id="course" required>
+                        <option value="BSIT">Bachelor of Science in Information Technology</option>
+                        <option value="BSCS">Bachelor of Science in Computer Science</option>
+                        <option value="BSHM">Bachelor of Science in Hospitality Management</option>
+                        <option value="BSSC">Bachelor of Science in Criminology</option>
+                        <option value="BSEdA">Bachelor of Science in Education</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="year_level">Year Level</label>
+                    <select name="Year_level" id="year_level" required>
+                        <option value="first year">1st Year</option>
+                        <option value="second year">2nd Year</option>
+                        <option value="third year">3rd Year</option>
+                        <option value="fourth year">4th Year</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Student Schedule</h2>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select name="subject" id="subject" required>
+                        <option value="programming">Programming</option>
+                        <option value="PE">Physical Education</option>
+                        <option value="IOT">Internet of Things</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="day">Day</label>
+                    <select name="days" id="day" required>
+                        <option value="MTH">Monday, Tuesday, Thursday</option>
+                        <option value="TF">Tuesday, Friday</option>
+                        <option value="WS">Wednesday, Saturday</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="start_end">Time Start</label>
+                    <select name="time_start" id="start_end" required>
+                        <option value="7am">7:30 AM</option>
+                        <option value="1pm">1:30 PM</option>
+                        <option value="4pm">4:30 PM</option>
+                    </select>
+
+                    <label for="time_end">Time End</label>
+                    <select name="time_end" id="time_end" required>
+                        <option value="7am">11:30 AM</option>
+                        <option value="1pm">4:00 PM</option>
+                        <option value="4pm">6:30 PM</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

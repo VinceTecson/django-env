@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'students_list.css' %}">
+    <title>Students</title>
+</head>
+<body>
+    <h1>Students</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Birthday</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>Contact Number</th>
+                <th>Course</th>
+                <th>Year Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.first_name }}</td>
+                <td>{{ student.last_name }}</td>
+                <td>{{ student.birthday }}</td>
+                <td>{{ student.gender }}</td>
+                <td>{{ student.address }}</td>
+                <td>{{ student.contact_number }}</td>
+                <td>{{ student.course_id.course }}</td>
+                <td>{{ student.year_id.Year_level }}</td>
+                <td>
+                    <a href="/update/{{ student.id }}"><button>Update</button></a>
+                    <a href="/delete/{{ student.id }}"><button>Delete</button></a>
+                    <a href="/details/{{ student.id }}"><button>Select</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/add_information"><button>Add Student</button></a>
+</body>
+</html>

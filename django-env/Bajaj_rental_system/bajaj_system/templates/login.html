@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'logo.jpg' %}" type="image/icon">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+
+    <title>SMCDOAI | Login</title>
+</head>
+<body>
+     
+    <div class="container">
+        <h1>Login Form</h1>
+        <form method="post">
+            {% csrf_token %}
+
+            {% if messages %}
+            <div class="alert alert-primary" role="alert">
+                {% for message in messages %}
+                    <span>{{ message }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="input_container">
+                <label for="username" class="input_label">Username</label>
+                <input type="text" name="username" id="username" class="input_field" placeholder="Enter your email">
+            </div>
+
+            <div class="input_container">
+                <label for="pass" class="input_label">Password</label>
+                <input type="password" name="password" id="pass" class="input_field" placeholder="Enter your password">
+            </div>
+
+            <h3 class="forget_password">Forgot Password</h3>
+
+            <input type="submit" name="submit" value="Login" class="login_btn">
+
+            <div class="create_account_container">
+                <a href="/signup" class="create_account_link">Create Account</a>
+            </div>
+
+            <div class="or_divider">or</div>
+
+            <a href="https://mail.google.com/">
+                <button class="gmail-login-btn">Login with Gmail</button>
+            </a>
+        </form>
+    </div>
+
+</body>
+</html>

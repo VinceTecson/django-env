@@ -1,0 +1,6 @@
+<div class="place-order">
+    <form action="{% url 'my_orders' %}" method="get">
+        {% csrf_token %}
+        <button type="submit">Place Order</button>
+    </form>
+</div>

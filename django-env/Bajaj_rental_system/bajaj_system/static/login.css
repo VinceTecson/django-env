@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.container h1 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+span {
+    color: #fd4040;
+    font-weight: bold;
+}
+
+.input_container {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input_label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+
+.input_field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input_field:focus {
+    border-color: #007bff;
+}
+
+.login_btn, .create_account_btn, .gmail_login_btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+.login_btn {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.login_btn:hover {
+    background-color: #0056b3;
+}
+
+.create_account_container {
+    margin-bottom: 10px;
+}
+
+.create_account_link {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.create_account_link:hover {
+    color: #0056b3;
+}
+
+.or_divider {
+    margin-bottom: 10px;
+    color: #999;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.forget_password {
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 20px;
+}

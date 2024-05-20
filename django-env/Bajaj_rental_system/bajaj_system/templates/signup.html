@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'logo.jpg' %}" type="image/icon">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'signup.css' %}">
+    <title>SMCDOAI | Sign-up</title>
+</head>
+<body>
+
+    <form action="{% url 'signup_user' %}" method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <h1>Personal Information Form</h1>
+
+            {% if messages %}
+            <div class="alert alert-primary" role="alert">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <div class="input_container">
+                <label for="username" class="input_label">Username</label>
+                <input type="text" name="username" id="username" class="input_field">
+            </div>
+            <div class="input_container">
+                <label for="password" class="input_label">Password</label>
+                <input type="password" name="password" id="password" class="input_field">
+            </div>
+
+            <div class="input_container">
+                <label for="fname" class="input_label">First Name</label>
+                <input type="text" name="ct_fname" id="fname" class="input_field">
+            </div>
+            <div class="input_container">
+                <label for="mname" class="input_label">Middle Name</label>
+                <input type="text" name="ct_mname" id="mname" class="input_field">
+            </div>
+            <div class="input_container">
+                <label for="lname" class="input_label">Last Name</label>
+                <input type="text" name="ct_lname" id="lname" class="input_field">
+            </div>
+            <div class="input_container">
+                <label for="birthday" class="input_label">Birthday</label>
+                <input type="date" name="ct_birthday" id="birthday" class="input_field">
+            </div>
+            <div class="input_container">
+                <label for="address" class="input_label">Address</label>
+                <input type="text" name="ct_address" id="address" class="input_field">
+            </div>
+            <div class="input_container">
+                <label for="contact" class="input_label">Contact No.</label>
+                <input type="text" name="ct_contact" id="contact" class="input_field">
+            </div>
+            <div class="button_container">
+                <input type="submit" value="Submit" class="submit_btn">
+                <a href="/login" class="back_link">Back</a>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

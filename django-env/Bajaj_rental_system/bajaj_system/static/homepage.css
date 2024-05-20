@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    overflow: hidden; 
+    padding: 0 20px;
+}
+
+  
+
+#showcase {
+  background-image: url(new.png);
+  background-size: cover;
+  color: #ddd;
+  text-align: center;
+  padding: 100px 0;
+}
+
+#showcase h1 {
+  font-size: 3em;
+}
+
+#showcase p {
+  font-size: 1.2em;
+}
+
+.btn {
+  display: inline-block;
+  background: #fff;
+  color: #333;
+  padding: 10px 20px;
+  text-decoration: none;
+  margin-top: 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color:#333;
+}
+
+section {
+  padding: 20px 0;
+}
+
+#bajaj {
+  background: #f0f0f0;
+  overflow: hidden; 
+  display: flex;
+}
+
+.bajaj {
+  background: #fff;
+  padding: 20px;
+  margin-right: 20px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  position: relative;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.bajaj:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); 
+  background-color: #969595;
+}
+
+.bajaj:last-child {
+  margin-right: 0; 
+}
+
+.bajaj img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.bajaj h3 {
+  margin-top: 10px;
+}
+
+.bajaj p {
+  color: #666;
+}
+
+.bajaj a {
+  text-align: center;
+}
+
+.bajaj .btn {
+  display: block;
+  margin-top: 10px;
+}
+
+
+.schedule_list {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: none; 
+}
+
+.bajaj:hover .schedule_list {
+  display: block;
+}
+
+.condition {
+  position: absolute;
+  top: 10px; 
+  right: 10px; 
+  padding: 5px 10px; 
+  border-radius: 5px;
+  font-size: 0.8em;
+}
+
+.bajaj {
+  position: relative;
+}
+
+.under-repair {
+  color: #fff;
+  background-color: rgb(245, 106, 106);
+}
+
+.standby {
+  color: #fff;
+  background-color: rgb(247, 247, 67);
+}
+
+.good {
+  color: #fff;
+  background-color: rgb(7, 173, 1);
+}
+
+
+#bajaj .bajaj:hover .condition {
+  color: #333;
+}
+
+
+#bajaj .bajaj:hover .btn:hover {
+  background-color: #333;
+}
+
+/* additional design to the error message */
+
+/* error message design */
+
+.new_background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.575);
+  z-index: 9998; 
+  display: none;
+}
+
+.message_error {
+  position: fixed;
+  width: 50%;
+  top: 50%;
+  text-align: center;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8); 
+  padding: 20px;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+  z-index: 9999;
+  display: none;
+}
+
+.message_error
+button {
+  display: inline-block;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
